@@ -8,7 +8,7 @@
 
     "builders": [
         {
-            "name": "debian90",
+            "name": "debian91",
 
             "type": "qemu",
             "qemu_binary": "qemu-kvm",
