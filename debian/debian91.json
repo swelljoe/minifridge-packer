@@ -12,8 +12,8 @@
 
             "type": "qemu",
             "qemu_binary": "qemu-kvm",
-            "net_device": "virtio-net-pci",
             "format": "raw",
+            "disk_interface": "ide",
             "headless": true,
             "accelerator": "kvm",
             "disk_size": "{{ user `disk_size` }}",
