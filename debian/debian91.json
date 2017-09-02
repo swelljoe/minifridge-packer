@@ -1,7 +1,7 @@
 {
     "variables": {
-        "user": "mfuser",
-        "password": "minifridge",
+        "user": "root",
+        "password": "minifridge!",
         "disk_size": "2000",
         "domain": ""
     },
@@ -39,11 +39,6 @@
                    "priority=critical ",
                    "interface=auto ",
                    "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
-
-                   "passwd/user-fullname={{ user `user` }} ",
-                   "passwd/user-password={{ user `password` }} ",
-                   "passwd/user-password-again={{ user `password` }} ",
-                   "passwd/username={{ user `user` }} ",
 
                    "<enter>"
             ]
