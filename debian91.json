@@ -3,7 +3,8 @@
         "user": "root",
         "password": "minifridge",
         "disk_size": "2000",
-        "domain": ""
+        "domain": "",
+        "os": "debian"
     },
 
     "builders": [
@@ -50,9 +51,9 @@
             "type": "shell",
             "execute_command": "bash '{{ .Path }}'",
             "scripts": [
-                "scripts/update.sh",
-                "scripts/packages.sh",
-                "scripts/cleanup.sh"
+                "{{ user `os` }}/scripts/update.sh",
+                "{{ user `os` }}/scripts/packages.sh",
+                "{{ user `os` }}/scripts/cleanup.sh"
             ]
         }
     ]
