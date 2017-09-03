@@ -4,7 +4,6 @@ bzip2
 curl
 dnsutils
 ntp
-rsync
 sudo
 unzip
 vim-nox

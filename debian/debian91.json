@@ -11,6 +11,7 @@
             "name": "debian91",
 
             "type": "qemu",
+            "headless": "true",
             "qemu_binary": "qemu-kvm",
             "format": "raw",
             "disk_interface": "ide",
@@ -49,7 +50,6 @@
             "type": "shell",
             "execute_command": "bash '{{ .Path }}'",
             "scripts": [
-                "scripts/rootlogin.sh",
                 "scripts/update.sh",
                 "scripts/packages.sh",
                 "scripts/cleanup.sh"
