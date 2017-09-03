@@ -1,5 +1,4 @@
 PACKAGES="
-acpid
 apt-file
 bzip2
 curl

@@ -1,7 +1,7 @@
 {
     "variables": {
         "user": "root",
-        "password": "minifridge!",
+        "password": "minifridge",
         "disk_size": "2000",
         "domain": ""
     },
@@ -14,7 +14,6 @@
             "qemu_binary": "qemu-kvm",
             "format": "raw",
             "disk_interface": "ide",
-            "headless": true,
             "accelerator": "kvm",
             "disk_size": "{{ user `disk_size` }}",
 
@@ -26,7 +25,7 @@
 
             "ssh_username": "{{ user `user` }}",
             "ssh_password": "{{ user `password` }}",
-            "shutdown_command": "echo '{{ user `password` }}' | sudo -S shutdown -h now",
+            "shutdown_command": "shutdown -h now",
 
             "ssh_wait_timeout": "20m",
 
@@ -48,8 +47,9 @@
     "provisioners": [
         {
             "type": "shell",
-            "execute_command": "echo '{{ user `password` }}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+            "execute_command": "bash '{{ .Path }}'",
             "scripts": [
+                "scripts/rootlogin.sh",
                 "scripts/update.sh",
                 "scripts/packages.sh",
                 "scripts/cleanup.sh"
