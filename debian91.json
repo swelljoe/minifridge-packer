@@ -23,7 +23,7 @@
             "iso_checksum": "c9e070074de83aa22e141f59a423e5210a5019b369ef1efe61a2afd44ba8f371",
             "iso_checksum_type": "sha256",
 
-            "http_directory": "http",
+            "http_directory": "debian/http",
 
             "ssh_username": "{{ user `user` }}",
             "ssh_password": "{{ user `password` }}",

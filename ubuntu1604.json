@@ -1,0 +1,56 @@
+{
+    "variables": {
+        "user": "root",
+        "password": "minifridge",
+        "disk_size": "3000",
+        "domain": "",
+        "os": "ubuntu"
+    },
+
+    "builders": [
+        {
+            "name": "ubuntu1604",
+
+            "type": "qemu",
+            "headless": "true",
+            "qemu_binary": "qemu-kvm",
+            "format": "raw",
+            "disk_interface": "ide",
+            "accelerator": "kvm",
+            "disk_size": "{{ user `disk_size` }}",
+
+            "iso_url": "http://archive.ubuntu.com/ubuntu/dists/xenial/main/installer-amd64/current/images/netboot/mini.iso",
+            "iso_checksum": "902731a64bf54a057ba266a32de5fbcc4c494fcf",
+            "iso_checksum_type": "sha1",
+
+            "http_directory": "{{ user `os` }}/http",
+
+            "ssh_username": "{{ user `user` }}",
+            "ssh_password": "{{ user `password` }}",
+            "shutdown_command": "shutdown -P now",
+
+            "ssh_wait_timeout": "20m",
+
+            "boot_wait": "2s",
+            "boot_command": [
+              "<tab><wait><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+              "/linux initrd=/initrd.gz auto=true noapic=true ",
+              "fb=false hostname=localhost locale=en_US ",
+              "keyboard-configuration/modelcode=SKIP ",
+              "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+              "<enter>"
+            ]
+        }
+    ],
+
+    "provisioners": [
+        {
+            "type": "shell",
+            "execute_command": "bash '{{ .Path }}'",
+            "scripts": [
+                "{{ user `os` }}/scripts/update.sh",
+                "{{ user `os` }}/scripts/cleanup.sh"
+            ]
+        }
+    ]
+}
