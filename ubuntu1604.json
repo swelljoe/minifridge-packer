@@ -49,6 +49,7 @@
             "execute_command": "bash '{{ .Path }}'",
             "scripts": [
                 "{{ user `os` }}/scripts/update.sh",
+                "{{ user `os` }}/scripts/packages.sh",
                 "{{ user `os` }}/scripts/cleanup.sh"
             ]
         }
